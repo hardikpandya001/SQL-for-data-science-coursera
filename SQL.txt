@@ -1,0 +1,155 @@
+PART-1
+
+Q1.Profile the data by finding the total number of records for each of the tables below:
+
+i. Attribute table =
+
+   select count(*) from attribute
+
+ii. Business table =
+
+   select count(*) from business
+
+iii. Category table =
+
+   select count(*) from category
+
+iv. Checkin table =
+
+   select count(*) from checkin
+
+v. elite_years table =
+  
+   select count(*) from elite_years
+   
+vi. friend table = 
+
+   select count(*) from friend
+
+vii. hours table =
+
+   select count(*) from hours
+
+viii. photo table = 
+
+   select count(*) from photo
+
+ix. review table = 
+  
+   select count(*) from review
+
+x. tip table = 
+
+   select count(*) from tip
+
+xi. user table =
+
+  select count(*) from user
+
+/*=========================================================================================================*/
+
+Q2. Find the total distinct records by either the foreign key or primary key for each table. If two foreign keys are listed in the table, please specify which foreign key.
+
+i. Business =
+
+   select distinct count(id) from business
+
+ii. Hours =
+
+   select distinct count(business_id) from hours
+
+iii. Category =
+
+   select distinct count(business_id) from category
+
+iv. Attribute =
+
+   select distinct count(business_id) from attribute
+
+v. Review =
+
+   select distinct count(id) from review
+
+vi. Checkin = 
+
+   select distinct count(business_id) from checkin
+
+vii. Photo =
+
+   select distinct count(id) from photo
+
+viii. Tip = 
+
+   select distinct count(user_id) from tip
+
+ix. User = 
+
+   select distinct count(id) from user
+
+x. Friend = 
+
+    select distinct count(user_id) from friend
+
+xi. Elite_years =
+
+    select distinct count(user_id) from elite_years
+
+/*================================================================================================*/
+
+Q3. Are there any columns with null values in the Users table? Indicate "yes," or "no."
+
+    select  count(*) as user_value
+      case when user_value>0 then 'yes'
+      else 'no'
+      end
+    from user
+    where user_value in (NULL,'NULL')
+
+/*===============================================================================================*/
+
+Q4. For each table and column listed below, display the smallest (minimum), largest (maximum), and average (mean) value for the following fields:
+
+	i. Table: Review, Column: Stars
+	
+		min:		max:		avg:
+
+           select min(stars),max(stars),avg(stars) from review;
+		
+	
+	ii. Table: Business, Column: Stars
+	
+		min:		max:		avg:
+
+           select min(stars),max(stars),avg(stars) from business;
+		
+	
+	iii. Table: Tip, Column: Likes
+	
+		min:		max:		avg:
+
+           select min(likes),max(likes),avg(likes) from tip;
+		
+	
+	iv. Table: Checkin, Column: Count
+	
+		min:		max:		avg:
+	
+           select min(count),max(count),avg(count) from checkin;	
+	
+	v. Table: User, Column: Review_count
+	
+		min:		max:		avg:
+
+          select min(Review_count),max(Review_count),avg(Review_count) from user;
+
+/*===========================================================================================================================*/
+
+Q5. List the cities with the most reviews in descending order:
+     
+        select city,count(review.id) from business
+        inner join review 
+        on business.id=review.id
+        order by review.id    
+
+/*==============================================================================================================================*/ 
+		 
